@@ -33,6 +33,13 @@ return {
       ['g\\'] = { 'actions.toggle_trash', mode = 'n' },
     },
 
+    columns = {
+      'icon',
+      -- 'permissions',
+      'size',
+      'mtime',
+    },
+
     -- Set to false to disable all of the above keymaps
     use_default_keymaps = true,
 
