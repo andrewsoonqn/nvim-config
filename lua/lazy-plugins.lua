@@ -33,6 +33,8 @@ require('lazy').setup({
 
   require 'plugins.ui.zenline',
 
+  require 'plugins.ui.startify',
+
   require 'plugins.utils.todo-comments',
 
   require 'plugins.utils.mini',
