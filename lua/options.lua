@@ -6,6 +6,8 @@ vim.o.winborder = 'rounded'
 vim.o.number = true
 vim.o.ruler = true
 
+vim.o.relativenumber = true
+
 vim.o.mouse = 'a'
 
 -- Don't show the mode, since it's already in the status line
@@ -13,9 +15,11 @@ vim.o.showmode = false
 
 -- Sync clipboard between OS and Neovim.
 --  Schedule the setting after `UiEnter` because it can increase startup-time.
-vim.schedule(function()
-  vim.o.clipboard = 'unnamedplus'
-end)
+-- NOTE: use "+yy instead!
+--
+-- vim.schedule(function()
+--   vim.o.clipboard = 'unnamedplus'
+-- end)
 
 vim.o.breakindent = true
 
@@ -57,7 +61,7 @@ vim.o.smartindent = true
 vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 vim.o.expandtab = true
--- vim.o.wrap = true
+vim.o.wrap = true
 vim.o.linebreak = true
 
 -- Create an autocommand group (this prevents duplicates if you reload your config)
