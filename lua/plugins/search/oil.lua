@@ -3,6 +3,10 @@ return {
   ---@module 'oil'
   ---@type oil.SetupOpts
   opts = {
+    win_options = {
+      winbar = "%#StatusLine# %{toupper(mode())} %{v:lua.require('oil').get_current_dir()} %m",
+    },
+
     default_file_explorer = true,
 
     -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
