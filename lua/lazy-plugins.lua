@@ -23,7 +23,8 @@ require('lazy').setup({
   -- modular approach: using `require 'path.name'` will
   -- include a plugin definition from file lua/path/name.lua
 
-  require 'plugins.git.blame',
+  -- require 'plugins.git.blame',
+  require 'plugins.git.gitsigns',
 
   require 'plugins.search.telescope',
 
