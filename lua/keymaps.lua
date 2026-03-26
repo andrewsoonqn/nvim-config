@@ -1,7 +1,7 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
-vim.keymap.set('n', '<C-a>', 'ggyG')
+vim.keymap.set('n', '<C-a>', 'gg"+yG')
 
 vim.keymap.set('n', '<leader>fw', function()
   vim.cmd.write()
