@@ -64,7 +64,7 @@ vim.o.expandtab = true
 vim.o.wrap = true
 vim.o.linebreak = true
 
-vim.opt.guicursor = 'i:block'
+-- vim.opt.guicursor = 'i:block'
 
 -- Create an autocommand group (this prevents duplicates if you reload your config)
 local diagnostic_toggle = vim.api.nvim_create_augroup('DiagnosticToggle', { clear = true })
