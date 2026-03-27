@@ -8,12 +8,12 @@ return {
         enabled = true,
       },
       char = {
-        search = {
-          -- Forces literal and case-sensitive matching for f, F, t, T
-          mode = function(str)
-            return '\\V\\C' .. vim.fn.escape(str, '\\')
-          end,
-        },
+        -- search = {
+        --   -- Forces literal and case-sensitive matching for f, F, t, T
+        --   mode = function(str)
+        --     return '\\V\\C' .. vim.fn.escape(str, '\\')
+        --   end,
+        -- },
         jump_labels = true,
       },
     },
