@@ -68,6 +68,7 @@ require('lazy').setup({
   require 'plugins.extensions.obsidian',
   require 'plugins.extensions.md-preview',
   require 'plugins.extensions.vim-be-good',
+  require 'plugins.extensions.opencode',
 
   require 'plugins.utils.flash',
 
