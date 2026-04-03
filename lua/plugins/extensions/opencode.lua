@@ -34,11 +34,11 @@ return {
     vim.o.autoread = true -- Required for `opts.events.reload`
 
     -- Keymaps
-    vim.keymap.set({ 'n', 'x' }, '<C-k>', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>ock', function()
       require('opencode').ask('@this: ', { submit = true })
     end, { desc = 'Ask opencode…' })
 
-    vim.keymap.set({ 'n', 'x' }, '<C-x>', function()
+    vim.keymap.set({ 'n', 'x' }, 'ocx', function()
       require('opencode').select()
     end, { desc = 'Execute opencode action…' })
 
@@ -46,11 +46,11 @@ return {
       require('opencode').toggle()
     end, { desc = 'Toggle opencode' })
 
-    vim.keymap.set({ 'n', 'x' }, 'go', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>oca', function()
       return require('opencode').operator '@this '
     end, { desc = 'Add range to opencode', expr = true })
 
-    vim.keymap.set('n', 'goo', function()
+    vim.keymap.set('n', '<leader>ocl', function()
       return require('opencode').operator '@this ' .. '_'
     end, { desc = 'Add line to opencode', expr = true })
 
@@ -61,9 +61,5 @@ return {
     vim.keymap.set('n', '<S-C-d>', function()
       require('opencode').command 'session.half.page.down'
     end, { desc = 'Scroll opencode down' })
-
-    -- Clean up standard keymaps if using the C-a/C-x overrides above
-    vim.keymap.set('n', '+', '<C-a>', { desc = 'Increment', noremap = true })
-    vim.keymap.set('n', '-', '<C-x>', { desc = 'Decrement', noremap = true })
   end,
 }
