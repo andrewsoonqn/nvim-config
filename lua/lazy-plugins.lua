@@ -31,6 +31,7 @@ require('lazy').setup({
 
   require 'plugins.utils.bqf',
 
+  -- require 'plugins.ui.kanagawa',
   require 'plugins.ui.tokyonight',
 
   require 'plugins.ui.zenline',
