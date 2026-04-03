@@ -25,6 +25,7 @@ require('lazy').setup({
 
   -- require 'plugins.git.blame',
   require 'plugins.git.gitsigns',
+  require 'plugins.git.lazygit',
 
   require 'plugins.search.telescope',
 
