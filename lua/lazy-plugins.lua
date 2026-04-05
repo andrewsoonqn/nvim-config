@@ -48,6 +48,8 @@ require('lazy').setup({
 
   require 'plugins.utils.which-key',
 
+  require 'plugins.utils.tabout',
+
   require 'plugins.lsp.lspconfig',
 
   require 'plugins.lsp.tiny-inline-diagnostic',
