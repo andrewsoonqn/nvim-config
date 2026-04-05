@@ -42,6 +42,8 @@ require('lazy').setup({
 
   require 'plugins.utils.mini',
 
+  require 'plugins.utils.sniprun',
+
   require 'plugins.lsp.treesitter',
 
   require 'plugins.utils.which-key',
