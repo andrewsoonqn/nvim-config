@@ -83,6 +83,7 @@ vim.keymap.set('n', '<leader>st', function()
 end)
 
 vim.keymap.set('n', '<leader>ls', function()
+  vim.cmd 'vsplit'
   local uri = 'oil-ssh://andrewsq@xlogin1.comp.nus.edu.sg//home/a/andrewsq/'
   vim.cmd('edit ' .. uri)
 end, { desc = '[L]og into [S]SH' })
