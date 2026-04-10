@@ -67,6 +67,7 @@ require('lazy').setup({
 
   require 'plugins.search.harpoon',
   require 'plugins.search.oil',
+  require 'plugins.search.yazi',
 
   require 'plugins.utils.surround',
   require 'plugins.utils.resolve',
