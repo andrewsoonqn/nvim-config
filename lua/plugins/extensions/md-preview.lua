@@ -7,7 +7,7 @@ return {
     vim.g.mkdp_browser = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
 
     -- Theme & Appearance
-    vim.g.mkdp_theme = 'light' -- Sets overall UI to light
+    vim.g.mkdp_theme = 'dark' -- Sets overall UI to light
 
     -- Keymaps
     vim.keymap.set('n', '<leader>mp', '<cmd>MarkdownPreview<cr>', { desc = '[M]arkdown [P]review' })
