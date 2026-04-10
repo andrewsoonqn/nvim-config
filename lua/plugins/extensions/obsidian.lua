@@ -1,6 +1,5 @@
 local function obsidian_new_with_prompt()
   local date = os.date '%d%m%y'
-  -- Get your vault path from the config (or hardcode it if easier)
   local vault_path = "/Users/andrewsoon/Andrew's Vault"
 
   vim.ui.input({ prompt = 'What topic/message? ' }, function(input)
@@ -12,48 +11,45 @@ local function obsidian_new_with_prompt()
     local filename = (input ~= '' and (input .. ' ') or '') .. date .. '.md'
     local full_path = vault_path .. '/' .. filename
 
-    -- 1. Open the file directly (bypass ObsidianNew logic)
+    -- 1. Create/Open the file
     vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
 
-    -- 2. Insert your content into the clean buffer
+    -- 2. Insert content
     vim.api.nvim_buf_set_lines(0, 0, -1, false, {
       '#to-tag',
-      '# ' .. display_title,
       '',
+      '# ' .. display_title,
       '',
       '',
     })
 
     -- 3. Position cursor
-    vim.api.nvim_win_set_cursor(0, { 4, 0 })
-
-    -- 4. Save the file immediately so Obsidian recognizes it
-    vim.cmd 'write'
+    vim.api.nvim_win_set_cursor(0, { 5, 0 })
   end)
 end
+
 vim.keymap.set('n', '<leader>on', obsidian_new_with_prompt, { desc = '[O]bsidian [N]ote' })
 
 return {
   'epwalsh/obsidian.nvim',
   version = '*',
-  lazy = false, -- Set to false so the keymap works immediately
+  lazy = false,
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
   config = function(_, opts)
     require('obsidian').setup(opts)
-    vim.opt_local.conceallevel = 2
+    -- This ensures markdown looks clean (hides syntax) and kills the warning
+    vim.opt.conceallevel = 2
   end,
   opts = {
     note_id_func = function(title)
       return title
     end,
-
     frontmatter = {
       enabled = false,
     },
     legacy_commands = false,
-
     workspaces = {
       {
         name = "Andrew's Vault",
