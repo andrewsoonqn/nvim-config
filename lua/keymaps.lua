@@ -9,8 +9,8 @@ vim.keymap.set('n', '<leader>fw', function()
   vim.cmd.Oil()
 end, { desc = '[F]ile View after [W]rite' })
 
-vim.keymap.set('c', 'W', 'w', { noremap = true, silent = true })
-vim.keymap.set('c', 'Q', 'q', { noremap = true, silent = true })
+-- vim.keymap.set('c', 'W', 'w', { noremap = true, silent = true })
+-- vim.keymap.set('c', 'Q', 'q', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = '[W]rite file' })
 
