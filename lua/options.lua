@@ -99,4 +99,25 @@ vim.api.nvim_create_autocmd('InsertLeave', {
   end,
 })
 
+vim.opt.conceallevel = 2
+vim.opt.concealcursor = ''
+
+local conceal_group = vim.api.nvim_create_augroup('Conceal', { clear = true })
+
+-- When entering Insert mode, reveal EVERYTHING
+vim.api.nvim_create_autocmd('InsertEnter', {
+  group = conceal_group,
+  callback = function()
+    vim.opt_local.conceallevel = 0
+  end,
+})
+
+-- When leaving Insert mode (back to Normal), hide everything again
+vim.api.nvim_create_autocmd('InsertLeave', {
+  group = conceal_group,
+  callback = function()
+    vim.opt_local.conceallevel = 2
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et

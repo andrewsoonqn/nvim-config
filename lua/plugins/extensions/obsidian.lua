@@ -44,6 +44,27 @@ return {
     require('obsidian').setup(opts)
 
     vim.opt.conceallevel = 2
+    vim.opt.concealcursor = ''
+
+    local conceal_group = vim.api.nvim_create_augroup('ObsidianConceal', { clear = true })
+
+    -- When entering Insert mode in a markdown file, reveal EVERYTHING
+    vim.api.nvim_create_autocmd('InsertEnter', {
+      group = conceal_group,
+      pattern = '*.md',
+      callback = function()
+        vim.opt_local.conceallevel = 0
+      end,
+    })
+
+    -- When leaving Insert mode (back to Normal), hide everything again
+    vim.api.nvim_create_autocmd('InsertLeave', {
+      group = conceal_group,
+      pattern = '*.md',
+      callback = function()
+        vim.opt_local.conceallevel = 2
+      end,
+    })
   end,
   opts = {
     note_id_func = function(title)
