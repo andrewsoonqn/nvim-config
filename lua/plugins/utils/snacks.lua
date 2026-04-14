@@ -11,5 +11,7 @@ return {
         enabled = false,
       },
     },
+    bigfile = {},
+    quickfile = {},
   },
 }
