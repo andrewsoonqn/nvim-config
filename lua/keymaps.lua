@@ -9,8 +9,9 @@ vim.keymap.set('n', '<leader>fw', function()
   vim.cmd.Oil()
 end, { desc = '[F]ile View after [W]rite' })
 
--- vim.keymap.set('c', 'W', 'w', { noremap = true, silent = true })
--- vim.keymap.set('c', 'Q', 'q', { noremap = true, silent = true })
+vim.keymap.set('c', 'W', 'w', { noremap = true, silent = true })
+vim.keymap.set('c', 'Q', 'q', { noremap = true, silent = true })
+
 vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = '[W]rite file' })
 
 vim.keymap.set('n', '<leader>pc', ':Precognition toggle<CR>', { desc = 'Toggle [P]re[c]ognition' })
@@ -94,36 +95,42 @@ vim.keymap.set('n', '<leader>sx', function()
   print 'File saved and sourced!'
 end, { desc = '[S]ave and E[x]ecute' })
 
-local zz_check = false
-vim.keymap.set('n', 'ZZ', function()
-  if zz_check then
-    -- Second press within 2 seconds: Execute the real ZZ
-    zz_check = false -- Reset state
-    vim.cmd 'wq'
-  else
-    -- First press: Set the gate and start the timer
-    zz_check = true
-    print 'Careful! Use <leader>fw to save. Press ZZ again within 2s to force quit.'
+-- local zz_check = false
+-- vim.keymap.set('n', 'ZZ', function()
+--   if zz_check then
+--     -- Second press within 2 seconds: Execute the real ZZ
+--     zz_check = false -- Reset state
+--     vim.cmd 'wq'
+--   else
+--     -- First press: Set the gate and start the timer
+--     zz_check = true
+--     print 'Careful! Use <leader>fw to save. Press ZZ again within 2s to force quit.'
+--
+--     vim.defer_fn(function()
+--       zz_check = false
+--     end, 2000) -- 2000ms = 2 seconds
+--   end
+-- end)
+--
+-- local zq_check = false
+-- vim.keymap.set('n', 'ZQ', function()
+--   if zq_check then
+--     zq_check = false
+--     vim.cmd 'q!'
+--   else
+--     zq_check = true
+--     print 'Warning: ZQ will discard changes. Press ZQ again in 2s to confirm.'
+--     vim.defer_fn(function()
+--       zq_check = false
+--     end, 2000)
+--   end
+-- end)
 
-    vim.defer_fn(function()
-      zz_check = false
-    end, 2000) -- 2000ms = 2 seconds
-  end
-end)
-
-local zq_check = false
-vim.keymap.set('n', 'ZQ', function()
-  if zq_check then
-    zq_check = false
-    vim.cmd 'q!'
-  else
-    zq_check = true
-    print 'Warning: ZQ will discard changes. Press ZQ again in 2s to confirm.'
-    vim.defer_fn(function()
-      zq_check = false
-    end, 2000)
-  end
-end)
+-- -- Map 'q' to write and quit
+-- vim.keymap.set('n', '<leader>zz', '<cmd>wq<CR>', { desc = 'ZZ' })
+--
+-- -- Map 'Q' to quit without saving (force)
+-- vim.keymap.set('n', '<leader>zq', '<cmd>q!<CR>', { desc = 'ZQ' })
 
 -- Normal mode: Yank current line to system clipboard
 vim.keymap.set('n', '<C-y>', '"+yy', { desc = 'Yank line to system clipboard' })
