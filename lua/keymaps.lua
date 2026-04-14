@@ -125,4 +125,10 @@ vim.keymap.set('n', 'ZQ', function()
   end
 end)
 
+-- Normal mode: Yank current line to system clipboard
+vim.keymap.set('n', '<C-y>', '"+yy', { desc = 'Yank line to system clipboard' })
+
+-- Visual mode: Yank selection to system clipboard
+vim.keymap.set('v', '<C-y>', '"+y', { desc = 'Yank selection to system clipboard' })
+
 -- vim: ts=2 sts=2 sw=2 et
