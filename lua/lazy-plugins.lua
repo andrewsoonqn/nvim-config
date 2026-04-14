@@ -77,6 +77,8 @@ require('lazy').setup({
   require 'plugins.extensions.vim-be-good',
   require 'plugins.extensions.opencode',
 
+  require 'plugins.extensions.jqx',
+
   require 'plugins.utils.flash',
 
   -- The following comments only work if you have downloaded the repo, not just copy pasted the
