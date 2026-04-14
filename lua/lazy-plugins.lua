@@ -65,7 +65,6 @@ require('lazy').setup({
   require 'plugins.ui.precognition',
   require 'plugins.ui.rainbow-delimiters',
   require 'plugins.ui.csvview',
-  require 'plugins.ui.snacks',
 
   require 'plugins.search.harpoon',
   require 'plugins.search.oil',
@@ -73,6 +72,7 @@ require('lazy').setup({
 
   require 'plugins.utils.surround',
   require 'plugins.utils.resolve',
+  require 'plugins.utils.snacks',
 
   require 'plugins.extensions.obsidian',
   require 'plugins.extensions.markdown-preview',
