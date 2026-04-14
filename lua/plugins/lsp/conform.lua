@@ -12,6 +12,22 @@ return {
         mode = '',
         desc = '[F]ormat buffer',
       },
+      {
+        '<leader>tf',
+        function()
+          vim.g.disable_autoformat = not vim.g.disable_autoformat
+          print('Global autoformat: ' .. (vim.g.disable_autoformat and 'disabled' or 'enabled'))
+        end,
+        desc = '[T]oggle [f]ormat globally',
+      },
+      {
+        '<leader>tF',
+        function()
+          vim.b.disable_autoformat = not (vim.b.disable_autoformat or false)
+          print('Buffer autoformat: ' .. (vim.b.disable_autoformat and 'disabled' or 'enabled'))
+        end,
+        desc = '[T]oggle [f]ormat for buffer',
+      },
     },
     opts = {
       notify_on_error = false,
