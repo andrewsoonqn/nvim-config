@@ -40,6 +40,11 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
   },
+  config = function(_, opts)
+    require('obsidian').setup(opts)
+
+    vim.opt.conceallevel = 2
+  end,
   opts = {
     note_id_func = function(title)
       return title
@@ -64,6 +69,11 @@ return {
     completion = {
       nvim_cmp = false,
       min_chars = 2,
+    },
+
+    -- If enabling, uncomment the config field above too
+    ui = {
+      enable = true,
     },
   },
 }
