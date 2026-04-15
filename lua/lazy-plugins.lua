@@ -74,6 +74,8 @@ require('lazy').setup({
   require 'plugins.utils.flash',
   require 'plugins.utils.twilight',
 
+  require 'plugins.utils.auto-session',
+
   -- The following comments only work if you have downloaded the repo, not just copy pasted the
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
