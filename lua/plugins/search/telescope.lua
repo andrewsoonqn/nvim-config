@@ -85,7 +85,13 @@ return {
       vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
       vim.keymap.set('n', '<leader><leader>', builtin.buffers, { desc = '[ ] Find existing buffers' })
       vim.keymap.set('n', '<leader>sd', function()
-        require('telescope.builtin').find_files { cwd = vim.fn.expand '%:p:h' }
+        local dir
+        if vim.bo.filetype == 'oil' then
+          dir = require('oil').get_current_dir()
+        else
+          dir = vim.fn.expand '%:p:h'
+        end
+        require('telescope.builtin').find_files { cwd = dir }
       end, { desc = 'Find files in current buffer directory' })
 
       -- Slightly advanced example of overriding default behavior and theme
