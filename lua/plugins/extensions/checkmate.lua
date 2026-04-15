@@ -215,7 +215,8 @@ return {
       ---@diagnostic disable-next-line: missing-fields
       unchecked = { marker = '󰄱', order = 1 },
       ---@diagnostic disable-next-line: missing-fields
-      checked = { marker = '✔︎', order = 2 },
+      -- checked = { marker = '✔︎', order = 2 },
+      checked = { marker = '', order = 2 },
     },
     keys = {
       ['<leader>x'] = {
