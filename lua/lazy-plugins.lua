@@ -68,6 +68,7 @@ require('lazy').setup({
   require 'plugins.extensions.markdown-preview',
   require 'plugins.extensions.vim-be-good',
   require 'plugins.extensions.opencode',
+  require 'plugins.extensions.checkmate',
 
   require 'plugins.extensions.jqx',
 
