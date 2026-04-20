@@ -3,6 +3,12 @@ return {
   'folke/noice.nvim',
   event = 'VeryLazy',
   opts = {
+    lsp = {
+      -- Blink already shows LSP signature help; disable Noice's auto-popup to avoid duplicate floats.
+      signature = {
+        enabled = false,
+      },
+    },
     messages = {
       -- NOTE: If you enable messages, then the cmdline is enabled automatically.
       -- This is a current Neovim limitation.
