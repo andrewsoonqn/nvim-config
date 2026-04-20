@@ -38,7 +38,7 @@ return {
       require('opencode').ask('@this: ', { submit = true })
     end, { desc = 'Ask opencode…' })
 
-    vim.keymap.set({ 'n', 'x' }, 'ocx', function()
+    vim.keymap.set({ 'n', 'x' }, '<leader>ocx', function()
       require('opencode').select()
     end, { desc = 'Execute opencode action…' })
 
