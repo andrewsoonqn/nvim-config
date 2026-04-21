@@ -63,12 +63,6 @@ local function is_tabout_char(char)
 end
 
 vim.keymap.set('i', '<Tab>', function()
-  local ok, luasnip = pcall(require, 'luasnip')
-  if ok and luasnip.jumpable(1) then
-    luasnip.jump(1)
-    return ''
-  end
-
   local col = vim.fn.col '.'
   local line = vim.fn.getline '.'
   local next_char = line:sub(col, col)
@@ -81,12 +75,6 @@ vim.keymap.set('i', '<Tab>', function()
 end, { expr = true, silent = true, desc = 'Simple tabout' })
 
 vim.keymap.set('i', '<S-Tab>', function()
-  local ok, luasnip = pcall(require, 'luasnip')
-  if ok and luasnip.jumpable(-1) then
-    luasnip.jump(-1)
-    return ''
-  end
-
   local col = vim.fn.col '.'
   if col <= 1 then
     return '<S-Tab>'
