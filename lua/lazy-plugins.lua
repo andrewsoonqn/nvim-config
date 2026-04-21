@@ -38,7 +38,7 @@ require('lazy').setup({
 
   require 'plugins.utils.which-key',
 
-  require 'plugins.utils.tabout',
+  -- require 'plugins.utils.tabout',
   require 'plugins.utils.spider',
 
   require 'plugins.lsp.lspconfig',
