@@ -1,7 +1,11 @@
+-- why: single source of truth - the plugin workspace and the capture keymap
+--       both hang off this, so a vault move is a one-line change.
+local vault_path = vim.fn.expand '~/vault'
+-- why: unfiled captures belong in the Inbox, not the JD-structured vault root.
+local inbox_path = vault_path .. '/00-09 System/00 System management/00.01 Inbox'
+
 local function obsidian_new_with_prompt()
   local date = os.date '%d%m%y'
-  -- Get your vault path from the config (or hardcode it if easier)
-  local vault_path = "/Users/andrewsoon/Andrew's Vault"
 
   vim.ui.input({ prompt = 'What topic/message? ' }, function(input)
     if input == nil then
@@ -10,7 +14,7 @@ local function obsidian_new_with_prompt()
 
     local display_title = (input ~= '' and input or 'Untitled')
     local filename = (input ~= '' and (input .. ' ') or '') .. date .. '.md'
-    local full_path = vault_path .. '/' .. filename
+    local full_path = inbox_path .. '/' .. filename
 
     -- 1. Open the file directly (bypass ObsidianNew logic)
     vim.cmd('edit ' .. vim.fn.fnameescape(full_path))
@@ -79,13 +83,19 @@ return {
     workspaces = {
       {
         name = "Andrew's Vault",
-        path = "/Users/andrewsoon/Andrew's Vault",
+        path = vault_path,
       },
     },
+    -- why: mirrors ~/vault/.obsidian/templates.json - resolved against the
+    --       vault root, so templates load regardless of nvim's cwd.
+    templates = {
+      folder = '00-09 System/01 Meta/01.01 Templates',
+    },
+    -- why: mirrors ~/vault/.obsidian/daily-notes.json.
     daily_notes = {
-      folder = 'Dailies',
+      folder = '10-19 Dailies/11 Journal/11.01 Daily notes',
       date_format = '%d-%m-%Y',
-      template = '00 STORAGE/Templates/_Dailies Template',
+      template = '_Dailies Template',
     },
     completion = {
       nvim_cmp = false,
