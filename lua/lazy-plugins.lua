@@ -70,7 +70,7 @@ require('lazy').setup({
   require 'plugins.extensions.opencode',
   require 'plugins.extensions.checkmate',
 
-  require 'plugins.extensions.jqx',
+  -- require 'plugins.extensions.jqx', -- why: drops jq dependency, user doesn't want it
 
   require 'plugins.utils.flash',
   require 'plugins.utils.twilight',
