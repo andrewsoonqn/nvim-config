@@ -2,7 +2,7 @@
 --       both hang off this, so a vault move is a one-line change.
 local vault_path = vim.fn.expand '~/vault'
 -- why: unfiled captures belong in the Inbox, not the JD-structured vault root.
-local inbox_path = vault_path .. '/00-09 System/00 System management/00.01 Inbox'
+local inbox_path = vault_path .. '/00-09_system/00_system-management/00.01_inbox'
 
 local function obsidian_new_with_prompt()
   local date = os.date '%d%m%y'
@@ -89,11 +89,11 @@ return {
     -- why: mirrors ~/vault/.obsidian/templates.json - resolved against the
     --       vault root, so templates load regardless of nvim's cwd.
     templates = {
-      folder = '00-09 System/01 Meta/01.01 Templates',
+      folder = '00-09_system/01_meta/01.01_templates',
     },
     -- why: mirrors ~/vault/.obsidian/daily-notes.json.
     daily_notes = {
-      folder = '10-19 Dailies/11 Journal/11.01 Daily notes',
+      folder = '10-19_dailies/11_journal/11.01_daily-notes',
       date_format = '%d-%m-%Y',
       template = '_Dailies Template',
     },
