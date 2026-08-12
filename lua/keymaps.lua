@@ -195,4 +195,26 @@ vim.keymap.set('n', '<C-y>', '"+yy', { desc = 'Yank line to system clipboard' })
 -- Visual mode: Yank selection to system clipboard
 vim.keymap.set('v', '<C-y>', '"+y', { desc = 'Yank selection to system clipboard' })
 
+-- Copy the absolute path of the current file, or of the current directory in oil
+vim.keymap.set('n', '<leader>pa', function()
+  local path
+  if vim.bo.filetype == 'oil' then
+    -- why: get_current_dir() returns nil for remote adapters (oil-ssh://), so
+    -- fall back to the buffer name, which is the only path that exists there
+    path = require('oil').get_current_dir() or vim.api.nvim_buf_get_name(0)
+    -- why: oil dirs come back with a trailing slash; keep root "/" intact
+    path = path:gsub('(.)/$', '%1')
+  else
+    path = vim.fn.expand '%:p'
+  end
+
+  if path == '' then
+    vim.notify('No path for this buffer', vim.log.levels.WARN)
+    return
+  end
+
+  vim.fn.setreg('+', path)
+  vim.notify(path)
+end, { desc = 'Copy absolute [P]ath ([A]bsolute) to clipboard' })
+
 -- vim: ts=2 sts=2 sw=2 et
