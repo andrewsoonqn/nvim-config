@@ -4,42 +4,13 @@ return {
   build = 'cd app && yarn install',
   init = function()
     vim.g.mkdp_filetypes = { 'markdown' }
+    vim.g.mkdp_refresh_slow = 0
+    vim.g.mkdp_combine_preview = 1
+    vim.g.mkdp_combine_preview_auto_refresh = 1
+    vim.g.mkdp_auto_close = 0
 
-    _G.OpenMarkdownPreview = function(url)
-      local browser = vim.fn.exepath 'terminal-browser'
-      if browser == '' then
-        vim.notify('terminal-browser is not installed', vim.log.levels.ERROR)
-        return
-      end
-
-      local script = [[
-on run argv
-  set previewUrl to item 1 of argv
-  set browserBin to item 2 of argv
-  set workingDirectory to item 3 of argv
-  set commandText to quoted form of browserBin & " " & quoted form of previewUrl
-
-  tell application "Ghostty"
-    set targetTerminal to focused terminal of selected tab of front window
-    split targetTerminal direction right with configuration {initial working directory:workingDirectory, initial input:commandText & linefeed}
-  end tell
-end run
-]]
-
-      vim.system({ 'osascript', '-', url, browser, vim.fn.getcwd() }, { stdin = script }, function(result)
-        if result.code ~= 0 then
-          vim.schedule(function()
-            vim.notify('Failed to open Markdown preview in Ghostty: ' .. (result.stderr or 'unknown error'), vim.log.levels.ERROR)
-          end)
-        end
-      end)
-    end
-    vim.cmd [[
-      function! OpenMarkdownPreview(url) abort
-        call v:lua.OpenMarkdownPreview(a:url)
-      endfunction
-    ]]
-    vim.g.mkdp_browserfunc = 'OpenMarkdownPreview'
+    vim.g.mkdp_browserfunc = ''
+    vim.g.mkdp_browser = ''
 
     -- Theme & Appearance
     vim.g.mkdp_theme = 'dark' -- Sets overall UI to light
