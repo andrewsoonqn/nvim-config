@@ -60,7 +60,12 @@ return {
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
         c = { 'clang-format' },
         cpp = { 'clang-format' },
-        markdown = { 'prettier' },
+        markdown = { 'mdformat' },
+      },
+      formatters = {
+        mdformat = {
+          append_args = { '--compact-tables' },
+        },
       },
     },
   },
