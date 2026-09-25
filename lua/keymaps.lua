@@ -163,41 +163,26 @@ end, { desc = 'Copy absolute file [p]ath' })
 
 vim.keymap.set('n', '<leader>lp', function()
   local path = vim.api.nvim_buf_get_name(0)
-  local pane = vim.env.HERDR_PANE_ID
 
   if path == '' then
     vim.notify('Current buffer has no file', vim.log.levels.WARN)
     return
   end
 
-  if vim.fn.executable 'herdr' ~= 1 or not pane or pane == '' then
-    vim.notify('Plannotator requires Neovim to run inside Herdr', vim.log.levels.ERROR)
+  if vim.fn.executable 'plannotator' ~= 1 then
+    vim.notify('Plannotator executable not found', vim.log.levels.ERROR)
     return
   end
 
-  vim.system({
-    'herdr',
-    'plugin',
-    'pane',
-    'open',
-    '--plugin',
-    'plannotator-tui',
-    '--entrypoint',
-    'doc',
-    '--placement',
-    'split',
-    '--direction',
-    'right',
-    '--target-pane',
-    pane,
-    '--focus',
-    '--cwd',
-    vim.fn.getcwd(),
-    '--env',
-    'PLANNOTATOR_TUI_FILE=' .. path,
-    '--env',
-    'PLANNOTATOR_TUI_DELIVER_TO=' .. pane,
-  }, { detach = true })
+  vim.notify('Opening in Plannotator…')
+  vim.system({ 'plannotator', 'annotate', path }, { text = true }, function(result)
+    if result.code == 0 then return end
+
+    vim.schedule(function()
+      local message = vim.trim(result.stderr ~= '' and result.stderr or result.stdout)
+      vim.notify(message ~= '' and message or 'Plannotator failed to open', vim.log.levels.ERROR)
+    end)
+  end)
 end, { desc = 'Open current file in [p]lannotator' })
 
 -- vim: ts=2 sts=2 sw=2 et
