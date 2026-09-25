@@ -15,6 +15,7 @@ require('lazy').setup({
   require 'plugins.git.gitsigns',
   require 'plugins.git.lazygit',
   require 'plugins.git.conflict',
+  require 'plugins.git.gh-review',
 
   require 'plugins.search.telescope',
 
