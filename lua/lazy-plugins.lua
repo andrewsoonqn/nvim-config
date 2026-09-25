@@ -65,7 +65,7 @@ require('lazy').setup({
   require 'plugins.utils.resolve',
 
   require 'plugins.extensions.obsidian',
-  require 'plugins.extensions.markview',
+  require 'plugins.extensions.md-render',
   require 'plugins.extensions.vim-be-good',
   require 'plugins.extensions.opencode',
 
