@@ -65,10 +65,9 @@ require('lazy').setup({
   require 'plugins.utils.resolve',
 
   require 'plugins.extensions.obsidian',
-  require 'plugins.extensions.markdown-preview',
+  require 'plugins.extensions.markview',
   require 'plugins.extensions.vim-be-good',
   require 'plugins.extensions.opencode',
-  require 'plugins.extensions.checkmate',
 
   -- require 'plugins.extensions.jqx', -- why: drops jq dependency, user doesn't want it
 
