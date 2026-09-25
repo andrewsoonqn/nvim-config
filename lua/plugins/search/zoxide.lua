@@ -40,6 +40,6 @@ return {
 
     vim.keymap.set('n', '<leader>cd', function()
       require('telescope').extensions.zoxide.list()
-    end, { desc = 'Zoxide (Oil)' })
+    end, { desc = 'Open Zoxide [d]irectory in Oil' })
   end,
 }

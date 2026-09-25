@@ -13,7 +13,7 @@ return {
       'nvim-lua/plenary.nvim',
     },
     keys = {
-      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'Open [l]azy[g]it' },
+      { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'Open Lazy[g]it' },
     },
   },
 }

@@ -6,7 +6,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   keys = {
-    { '<leader>mp', '<cmd>botright vertical MdRender split<cr>', desc = 'Preview Markdown in right split' },
+    { '<leader>mp', '<cmd>botright vertical MdRender split<cr>', desc = '[p]review Markdown in right split' },
   },
   config = function()
     local markdown = require 'md-render.markdown'

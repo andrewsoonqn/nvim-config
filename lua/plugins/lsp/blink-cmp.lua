@@ -58,7 +58,7 @@ return {
         --
         -- See :h blink-cmp-config-keymap for defining your own keymap
         preset = 'default',
-        -- Keep Tab free for local tabout and move snippet jumps to Ctrl-j/Ctrl-l.
+        -- Keep Tab free for indentation and move snippet jumps to Ctrl-j/Ctrl-l.
         ['<Tab>'] = false,
         ['<S-Tab>'] = false,
         ['<C-l>'] = { 'snippet_forward', 'fallback' },

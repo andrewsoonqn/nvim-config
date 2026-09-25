@@ -10,7 +10,7 @@ return {
           require('conform').format { async = true, lsp_format = 'fallback' }
         end,
         mode = '',
-        desc = '[F]ormat [B]uffer',
+        desc = 'Format [b]uffer or selection',
       },
       {
         '<leader>tf',
@@ -18,7 +18,7 @@ return {
           vim.g.disable_autoformat = not vim.g.disable_autoformat
           print('Global autoformat: ' .. (vim.g.disable_autoformat and 'disabled' or 'enabled'))
         end,
-        desc = '[T]oggle [f]ormat globally',
+        desc = 'Toggle global auto[f]ormat',
       },
       {
         '<leader>tF',
@@ -26,7 +26,7 @@ return {
           vim.b.disable_autoformat = not (vim.b.disable_autoformat or false)
           print('Buffer autoformat: ' .. (vim.b.disable_autoformat and 'disabled' or 'enabled'))
         end,
-        desc = '[T]oggle [f]ormat for buffer',
+        desc = 'Toggle buffer auto[F]ormat',
       },
     },
     opts = {

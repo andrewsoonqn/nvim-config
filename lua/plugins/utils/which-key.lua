@@ -13,6 +13,7 @@ return {
         { '<leader>ht', group = 'Persistent Git display' },
         { '<leader>j', group = 'Jumps and Harpoon' },
         { '<leader>l', group = 'External tools' },
+        { '<leader>m', group = 'Markdown' },
         { '<leader>p', group = 'Project and session' },
         { '<leader>r', group = 'Run' },
         { '<leader>s', group = 'Search' },

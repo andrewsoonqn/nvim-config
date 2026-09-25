@@ -6,13 +6,13 @@ return {
     {
       '<leader>-',
       '<cmd>Yazi<cr>',
-      desc = 'Open yazi at the current file',
+      desc = 'Open Yazi at current file',
     },
     {
       -- Open in the current working directory
       '<leader>cw',
       '<cmd>Yazi cwd<cr>',
-      desc = "Open yazi in nvim's working directory",
+      desc = 'Open Yazi in [w]orking directory',
     },
   },
 }

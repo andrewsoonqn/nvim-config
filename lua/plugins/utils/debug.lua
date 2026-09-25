@@ -31,28 +31,28 @@ return {
       function()
         require('dap').continue()
       end,
-      desc = 'Debug: Start/Continue',
+      desc = 'Start or continue debugging',
     },
     {
       '<F1>',
       function()
         require('dap').step_into()
       end,
-      desc = 'Debug: Step Into',
+      desc = 'Step into',
     },
     {
       '<F2>',
       function()
         require('dap').step_over()
       end,
-      desc = 'Debug: Step Over',
+      desc = 'Step over',
     },
     {
       '<F3>',
       function()
         require('dap').step_out()
       end,
-      desc = 'Debug: Step Out',
+      desc = 'Step out',
     },
     {
       '<leader>db',
@@ -74,7 +74,7 @@ return {
       function()
         require('dapui').toggle()
       end,
-      desc = 'Debug: See last session result.',
+      desc = 'Toggle debugger UI',
     },
   },
   config = function()

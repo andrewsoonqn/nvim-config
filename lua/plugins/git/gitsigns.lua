@@ -76,7 +76,7 @@ return {
           else
             gitsigns.nav_hunk 'next'
           end
-        end, { desc = 'Jump to next git [c]hange' })
+        end, { desc = 'Next Git [c]hange' })
 
         map('n', '[c', function()
           if vim.wo.diff then
@@ -84,21 +84,21 @@ return {
           else
             gitsigns.nav_hunk 'prev'
           end
-        end, { desc = 'Jump to previous git [c]hange' })
+        end, { desc = 'Previous Git [c]hange' })
 
         map('v', '<leader>hs', function()
           gitsigns.stage_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'git [s]tage hunk' })
+        end, { desc = '[s]tage hunk' })
         map('v', '<leader>hr', function()
           gitsigns.reset_hunk { vim.fn.line '.', vim.fn.line 'v' }
-        end, { desc = 'git [r]eset hunk' })
-        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
-        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
-        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
+        end, { desc = '[r]eset hunk' })
+        map('n', '<leader>hs', gitsigns.stage_hunk, { desc = '[s]tage hunk' })
+        map('n', '<leader>hr', gitsigns.reset_hunk, { desc = '[r]eset hunk' })
+        map('n', '<leader>hS', gitsigns.stage_buffer, { desc = '[S]tage buffer' })
         map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = '[u]ndo staged Git hunk' })
-        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
-        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
-        map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
+        map('n', '<leader>hR', gitsigns.reset_buffer, { desc = '[R]eset buffer' })
+        map('n', '<leader>hp', gitsigns.preview_hunk, { desc = '[p]review hunk' })
+        map('n', '<leader>hb', gitsigns.blame_line, { desc = '[b]lame current line' })
         map('n', '<leader>hB', function()
           for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
             local blame_buf = vim.api.nvim_win_get_buf(win)

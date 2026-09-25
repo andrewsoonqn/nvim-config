@@ -1,7 +1,7 @@
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
-vim.keymap.set('n', '<C-a>', 'gg"+yG')
+vim.keymap.set('n', '<C-a>', 'gg"+yG', { desc = 'Copy entire buffer to system clipboard' })
 
 vim.keymap.set('n', '<leader>fo', function()
   vim.cmd.write()
@@ -11,16 +11,16 @@ end, { desc = 'Write file and [o]pen Oil' })
 -- vim.keymap.set('c', 'W', 'w', { noremap = true, silent = true })
 -- vim.keymap.set('c', 'Q', 'q', { noremap = true, silent = true })
 
-vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = '[W]rite file' })
+vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = '[w]rite file' })
 
-vim.keymap.set('n', '-', vim.cmd.Oil, { desc = 'Toggle file view' })
+vim.keymap.set('n', '-', vim.cmd.Oil, { desc = 'Open parent directory in Oil' })
 
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
-vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
+vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlights' })
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostics in location list' })
 
 -- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
 -- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
@@ -31,14 +31,14 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- opt + backspace to delete a word
-vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
-vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true })
+vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true, desc = 'Delete previous word' })
+vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true, desc = 'Delete previous word' })
 
 -- TIP: Disable arrow keys in normal mode
-vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
-vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
-vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
-vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>', { desc = 'Disable Left arrow; use h' })
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>', { desc = 'Disable Right arrow; use l' })
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>', { desc = 'Disable Up arrow; use k' })
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>', { desc = 'Disable Down arrow; use j' })
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -88,7 +88,7 @@ vim.keymap.set('n', '<leader>ls', function()
   vim.cmd 'vsplit'
   local uri = 'oil-ssh://andrewsq@xlogin1.comp.nus.edu.sg//home/a/andrewsq/'
   vim.cmd('edit ' .. uri)
-end, { desc = '[L]og into [S]SH' })
+end, { desc = 'Open NUS [s]SH home directory' })
 
 vim.keymap.set('n', '<leader>fs', function()
   vim.cmd 'write'
