@@ -1,6 +1,19 @@
 return {
   {
     'lewis6991/gitsigns.nvim',
+    init = function()
+      local group = vim.api.nvim_create_augroup('gitsigns-blame-keymaps', { clear = true })
+      vim.api.nvim_create_autocmd('FileType', {
+        group = group,
+        pattern = 'gitsigns-blame',
+        callback = function(event)
+          vim.keymap.set('n', '<leader>hB', '<cmd>close<CR>', {
+            buffer = event.buf,
+            desc = 'Close full-file [B]lame split',
+          })
+        end,
+      })
+    end,
     opts = {
       signs = {
         add = { text = '┃' },
@@ -82,16 +95,26 @@ return {
         map('n', '<leader>hs', gitsigns.stage_hunk, { desc = 'git [s]tage hunk' })
         map('n', '<leader>hr', gitsigns.reset_hunk, { desc = 'git [r]eset hunk' })
         map('n', '<leader>hS', gitsigns.stage_buffer, { desc = 'git [S]tage buffer' })
-        map('n', '<leader>hu', gitsigns.stage_hunk, { desc = 'git [u]ndo stage hunk' })
+        map('n', '<leader>hu', gitsigns.undo_stage_hunk, { desc = '[u]ndo staged Git hunk' })
         map('n', '<leader>hR', gitsigns.reset_buffer, { desc = 'git [R]eset buffer' })
         map('n', '<leader>hp', gitsigns.preview_hunk, { desc = 'git [p]review hunk' })
         map('n', '<leader>hb', gitsigns.blame_line, { desc = 'git [b]lame line' })
-        map('n', '<leader>hd', gitsigns.diffthis, { desc = 'git [d]iff against index' })
-        map('n', '<leader>hD', function()
+        map('n', '<leader>hB', function()
+          for _, win in ipairs(vim.api.nvim_tabpage_list_wins(0)) do
+            local blame_buf = vim.api.nvim_win_get_buf(win)
+            if vim.bo[blame_buf].filetype == 'gitsigns-blame' then
+              vim.api.nvim_win_close(win, true)
+              return
+            end
+          end
+
+          gitsigns.blame()
+        end, { desc = 'Toggle full-file [B]lame split' })
+        map('n', '<leader>hdi', gitsigns.diffthis, { desc = '[d]iff against Git [i]ndex' })
+        map('n', '<leader>hdc', function()
           gitsigns.diffthis '@'
-        end, { desc = 'git [D]iff against last commit' })
-        map('n', '<leader>tb', gitsigns.toggle_current_line_blame, { desc = '[T]oggle git show [b]lame line' })
-        map('n', '<leader>tD', gitsigns.preview_hunk_inline, { desc = '[T]oggle git show [D]eleted' })
+        end, { desc = '[d]iff against last [c]ommit' })
+        map('n', '<leader>htP', gitsigns.toggle_deleted, { desc = 'Toggle [P]ersistent deleted lines inline' })
       end,
     },
   },

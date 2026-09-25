@@ -3,18 +3,15 @@
 
 vim.keymap.set('n', '<C-a>', 'gg"+yG')
 
-vim.keymap.set('n', '<leader>fw', function()
+vim.keymap.set('n', '<leader>fo', function()
   vim.cmd.write()
-  -- vim.cmd.Ex()
   vim.cmd.Oil()
-end, { desc = '[F]ile View after [W]rite' })
+end, { desc = 'Write file and [o]pen Oil' })
 
 -- vim.keymap.set('c', 'W', 'w', { noremap = true, silent = true })
 -- vim.keymap.set('c', 'Q', 'q', { noremap = true, silent = true })
 
 vim.keymap.set('n', '<leader>w', vim.cmd.write, { desc = '[W]rite file' })
-
-vim.keymap.set('n', '<leader>pc', ':Precognition toggle<CR>', { desc = 'Toggle [P]re[c]ognition' })
 
 vim.keymap.set('n', '-', vim.cmd.Oil, { desc = 'Toggle file view' })
 
@@ -36,59 +33,6 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- opt + backspace to delete a word
 vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true })
 vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true })
-
--- tabout
-local closers = {
-  [')'] = true,
-  [']'] = true,
-  ['}'] = true,
-  ['"'] = true,
-  ["'"] = true,
-  ['`'] = true,
-  ['>'] = true,
-}
-
-local openers = {
-  ['('] = true,
-  ['['] = true,
-  ['{'] = true,
-  ['"'] = true,
-  ["'"] = true,
-  ['`'] = true,
-  ['<'] = true,
-}
-
-local function is_tabout_char(char)
-  return closers[char] or openers[char]
-end
-
-vim.keymap.set('i', '<Tab>', function()
-  local col = vim.fn.col '.'
-  local line = vim.fn.getline '.'
-  local next_char = line:sub(col, col)
-
-  if is_tabout_char(next_char) then
-    return '<Right>'
-  end
-
-  return '<Tab>'
-end, { expr = true, silent = true, desc = 'Simple tabout' })
-
-vim.keymap.set('i', '<S-Tab>', function()
-  local col = vim.fn.col '.'
-  if col <= 1 then
-    return '<S-Tab>'
-  end
-
-  local line = vim.fn.getline '.'
-  local prev_char = line:sub(col - 1, col - 1)
-
-  if is_tabout_char(prev_char) then
-    return '<Left>'
-  end
-
-  return '<S-Tab>'
-end, { expr = true, silent = true, desc = 'Simple reverse tabout' })
 
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
@@ -133,12 +77,12 @@ vim.api.nvim_create_autocmd('TermOpen', {
   end,
 })
 
-vim.keymap.set('n', '<leader>st', function()
+vim.keymap.set('n', '<leader>rt', function()
   vim.cmd.vnew()
   vim.cmd.term()
   vim.cmd.wincmd 'J'
   vim.api.nvim_win_set_height(0, 15)
-end)
+end, { desc = 'Open [t]erminal in bottom split' })
 
 vim.keymap.set('n', '<leader>ls', function()
   vim.cmd 'vsplit'
@@ -146,11 +90,11 @@ vim.keymap.set('n', '<leader>ls', function()
   vim.cmd('edit ' .. uri)
 end, { desc = '[L]og into [S]SH' })
 
-vim.keymap.set('n', '<leader>sx', function()
+vim.keymap.set('n', '<leader>fs', function()
   vim.cmd 'write'
   vim.cmd 'source %'
   print 'File saved and sourced!'
-end, { desc = '[S]ave and E[x]ecute' })
+end, { desc = 'Write and [s]ource current file' })
 
 -- local zz_check = false
 -- vim.keymap.set('n', 'ZZ', function()
@@ -196,7 +140,7 @@ vim.keymap.set('n', '<C-y>', '"+yy', { desc = 'Yank line to system clipboard' })
 vim.keymap.set('v', '<C-y>', '"+y', { desc = 'Yank selection to system clipboard' })
 
 -- Copy the absolute path of the current file, or of the current directory in oil
-vim.keymap.set('n', '<leader>pa', function()
+vim.keymap.set('n', '<leader>fp', function()
   local path
   if vim.bo.filetype == 'oil' then
     -- why: get_current_dir() returns nil for remote adapters (oil-ssh://), so
@@ -215,6 +159,45 @@ vim.keymap.set('n', '<leader>pa', function()
 
   vim.fn.setreg('+', path)
   vim.notify(path)
-end, { desc = 'Copy absolute [P]ath ([A]bsolute) to clipboard' })
+end, { desc = 'Copy absolute file [p]ath' })
+
+vim.keymap.set('n', '<leader>lp', function()
+  local path = vim.api.nvim_buf_get_name(0)
+  local pane = vim.env.HERDR_PANE_ID
+
+  if path == '' then
+    vim.notify('Current buffer has no file', vim.log.levels.WARN)
+    return
+  end
+
+  if vim.fn.executable 'herdr' ~= 1 or not pane or pane == '' then
+    vim.notify('Plannotator requires Neovim to run inside Herdr', vim.log.levels.ERROR)
+    return
+  end
+
+  vim.system({
+    'herdr',
+    'plugin',
+    'pane',
+    'open',
+    '--plugin',
+    'plannotator-tui',
+    '--entrypoint',
+    'doc',
+    '--placement',
+    'split',
+    '--direction',
+    'right',
+    '--target-pane',
+    pane,
+    '--focus',
+    '--cwd',
+    vim.fn.getcwd(),
+    '--env',
+    'PLANNOTATOR_TUI_FILE=' .. path,
+    '--env',
+    'PLANNOTATOR_TUI_DELIVER_TO=' .. pane,
+  }, { detach = true })
+end, { desc = 'Open current file in [p]lannotator' })
 
 -- vim: ts=2 sts=2 sw=2 et

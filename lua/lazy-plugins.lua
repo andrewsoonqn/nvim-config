@@ -20,9 +20,7 @@ require('lazy').setup({
 
   require 'plugins.utils.bqf',
 
-  -- require 'plugins.ui.themes.kanagawa',
   require 'plugins.ui.themes.koda',
-  -- require 'plugins.ui.themes.tokyonight',
 
   require 'plugins.ui.zenline',
 
@@ -32,13 +30,10 @@ require('lazy').setup({
 
   require 'plugins.utils.mini',
 
-  require 'plugins.utils.sniprun',
-
   require 'plugins.lsp.treesitter',
 
   require 'plugins.utils.which-key',
 
-  -- require 'plugins.utils.tabout',
   require 'plugins.utils.spider',
 
   require 'plugins.lsp.lspconfig',
@@ -51,7 +46,6 @@ require('lazy').setup({
 
   require 'plugins.ui.neoscroll',
   require 'plugins.ui.noice',
-  require 'plugins.ui.precognition',
   require 'plugins.ui.rainbow-delimiters',
   require 'plugins.ui.csvview',
   require 'plugins.ui.indent-line',
@@ -64,12 +58,7 @@ require('lazy').setup({
   require 'plugins.utils.surround',
   require 'plugins.utils.resolve',
 
-  require 'plugins.extensions.obsidian',
   require 'plugins.extensions.md-render',
-  require 'plugins.extensions.vim-be-good',
-  require 'plugins.extensions.opencode',
-
-  -- require 'plugins.extensions.jqx', -- why: drops jq dependency, user doesn't want it
 
   require 'plugins.utils.flash',
   require 'plugins.utils.twilight',

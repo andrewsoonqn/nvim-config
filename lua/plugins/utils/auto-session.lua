@@ -6,7 +6,7 @@ return {
       auto_restore = false,
     }
 
-    vim.keymap.set('n', '<leader>rq', '<cmd>AutoSession restore<CR>', { desc = '[R]estore [Q]uit Session' })
+    vim.keymap.set('n', '<leader>pr', '<cmd>AutoSession restore<CR>', { desc = '[r]estore project session' })
     vim.keymap.set('n', '<leader>pq', '<cmd>AutoSession save<CR><cmd>qa<CR>', { desc = '[P]ersist Session then [Q]uit' })
   end,
 }
