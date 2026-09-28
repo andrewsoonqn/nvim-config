@@ -139,6 +139,52 @@ vim.keymap.set('n', '<C-y>', '"+yy', { desc = 'Yank line to system clipboard' })
 -- Visual mode: Yank selection to system clipboard
 vim.keymap.set('v', '<C-y>', '"+y', { desc = 'Yank selection to system clipboard' })
 
+vim.keymap.set({ 'n', 'x' }, '<leader>v', '"+p', { desc = 'Paste from system clipboard' })
+
+vim.keymap.set('n', '<leader>fx', function()
+  local path
+  if vim.bo.filetype == 'oil' then
+    local entry = require('oil').get_cursor_entry()
+    local dir = require('oil').get_current_dir()
+    path = entry and dir and (dir .. entry.name) or nil
+  else
+    path = vim.api.nvim_buf_get_name(0)
+  end
+
+  if not path or path == '' then
+    vim.notify('No local file or Oil entry to open', vim.log.levels.WARN)
+    return
+  end
+
+  vim.ui.open(path)
+end, { desc = 'Open file or Oil entry e[x]ternally' })
+
+vim.keymap.set('n', '<leader>fr', function()
+  local path
+  local args
+  if vim.bo.filetype == 'oil' then
+    path = require('oil').get_current_dir()
+    args = path and { 'open', path } or nil
+  else
+    path = vim.api.nvim_buf_get_name(0)
+    args = path ~= '' and { 'open', '-R', path } or nil
+  end
+
+  if not args then
+    vim.notify('No local file or Oil directory to reveal', vim.log.levels.WARN)
+    return
+  end
+
+  vim.system(args, { text = true }, function(result)
+    if result.code == 0 then return end
+
+    vim.schedule(function()
+      local message = vim.trim(result.stderr ~= '' and result.stderr or result.stdout)
+      vim.notify(message ~= '' and message or 'Finder failed to open', vim.log.levels.ERROR)
+    end)
+  end)
+end, { desc = '[r]eveal file or Oil directory in Finder' })
+
 -- Copy the absolute path of the current file, or of the current directory in oil
 vim.keymap.set('n', '<leader>fp', function()
   local path
