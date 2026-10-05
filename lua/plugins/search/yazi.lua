@@ -1,18 +1,19 @@
-return {
-  'mikavilpas/yazi.nvim',
-  event = 'VeryLazy',
-  keys = {
-    -- Customize these to your liking
-    {
-      '<leader>-',
-      '<cmd>Yazi<cr>',
-      desc = 'Open Yazi at current file',
-    },
-    {
-      -- Open in the current working directory
-      '<leader>cw',
-      '<cmd>Yazi cwd<cr>',
-      desc = 'Open Yazi in [w]orking directory',
-    },
-  },
-}
+-- Deprecated: retained for reference, but no longer loaded.
+-- return {
+--   'mikavilpas/yazi.nvim',
+--   event = 'VeryLazy',
+--   keys = {
+--     -- Customize these to your liking
+--     {
+--       '<leader>-',
+--       '<cmd>Yazi<cr>',
+--       desc = 'Open Yazi at current file',
+--     },
+--     {
+--       -- Open in the current working directory
+--       '<leader>cw',
+--       '<cmd>Yazi cwd<cr>',
+--       desc = 'Open Yazi in [w]orking directory',
+--     },
+--   },
+-- }
