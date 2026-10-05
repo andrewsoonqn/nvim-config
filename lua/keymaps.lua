@@ -34,6 +34,59 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 vim.keymap.set('i', '<M-BS>', '<C-w>', { noremap = true, desc = 'Delete previous word' })
 vim.keymap.set('c', '<M-BS>', '<C-w>', { noremap = true, desc = 'Delete previous word' })
 
+-- tabout
+local closers = {
+  [')'] = true,
+  [']'] = true,
+  ['}'] = true,
+  ['"'] = true,
+  ["'"] = true,
+  ['`'] = true,
+  ['>'] = true,
+}
+
+local openers = {
+  ['('] = true,
+  ['['] = true,
+  ['{'] = true,
+  ['"'] = true,
+  ["'"] = true,
+  ['`'] = true,
+  ['<'] = true,
+}
+
+local function is_tabout_char(char)
+  return closers[char] or openers[char]
+end
+
+vim.keymap.set('i', '<Tab>', function()
+  local col = vim.fn.col '.'
+  local line = vim.fn.getline '.'
+  local next_char = line:sub(col, col)
+
+  if is_tabout_char(next_char) then
+    return '<Right>'
+  end
+
+  return '<Tab>'
+end, { expr = true, silent = true, desc = 'Simple tabout' })
+
+vim.keymap.set('i', '<S-Tab>', function()
+  local col = vim.fn.col '.'
+  if col <= 1 then
+    return '<S-Tab>'
+  end
+
+  local line = vim.fn.getline '.'
+  local prev_char = line:sub(col - 1, col - 1)
+
+  if is_tabout_char(prev_char) then
+    return '<Left>'
+  end
+
+  return '<S-Tab>'
+end, { expr = true, silent = true, desc = 'Simple reverse tabout' })
+
 -- TIP: Disable arrow keys in normal mode
 vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>', { desc = 'Disable Left arrow; use h' })
 vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>', { desc = 'Disable Right arrow; use l' })
