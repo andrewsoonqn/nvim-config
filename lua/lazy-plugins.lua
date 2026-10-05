@@ -53,7 +53,8 @@ require('lazy').setup({
 
   require 'plugins.search.harpoon',
   require 'plugins.search.oil',
-  require 'plugins.search.yazi',
+  -- Deprecated: use Oil for file management instead of Yazi.
+  -- require 'plugins.search.yazi',
   require 'plugins.search.zoxide',
 
   require 'plugins.utils.surround',
