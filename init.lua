@@ -21,5 +21,16 @@ require 'lazy-plugins'
 
 require 'plugins.ui.startify-setup'
 
+vim.api.nvim_create_autocmd({ 'BufEnter', 'BufFilePost', 'InsertLeave' }, {
+  group = vim.api.nvim_create_augroup('ExercismQuiet', { clear = true }),
+  callback = function()
+    local path = vim.api.nvim_buf_get_name(0)
+    local exercism = vim.startswith(path, vim.fn.expand('~/dev/exercism/'))
+
+    vim.b.completion = not exercism
+    vim.diagnostic.enable(not exercism)
+  end,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
