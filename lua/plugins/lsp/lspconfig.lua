@@ -286,6 +286,14 @@ return {
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
+      -- Mason auto-enables servers through Neovim's native configuration API.
+      vim.lsp.config('pyright', {
+        handlers = {
+          -- Suppress analysis progress without disabling diagnostics or completion.
+          ['$/progress'] = function() end,
+        },
+      })
+
       require('mason-lspconfig').setup {
         ensure_installed = {}, -- explicitly set to an empty table (Kickstart populates installs via mason-tool-installer)
         automatic_installation = false,
