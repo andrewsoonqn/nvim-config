@@ -8,7 +8,9 @@ local parsers = {
   'luadoc',
   'markdown',
   'markdown_inline',
+  'python',
   'query',
+  'typescript',
   'vim',
   'vimdoc',
 }
